@@ -5,7 +5,7 @@ jobs:
   include:
     - stage: tests
       before_script:
-        - docker build -t ign0ramus/multi-docker-container-test-app-frontend -f Dockerfile.dev ./frontend
+        - docker build -t ign0ramus/multi-docker-container-test-app-frontend -f ./frontend/Dockerfile.dev ./frontend
       script:
         - docker -e CI=true ign0ramus/multi-docker-container-test-app-frontend npm run test
 
