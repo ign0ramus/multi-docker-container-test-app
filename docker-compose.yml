@@ -1,4 +1,4 @@
-version: '3'
+version_TAG: '3'
 
 services: 
     postgres:
@@ -14,7 +14,7 @@ services:
         build:
             context: ./nginx
             dockerfile: Dockerfile
-        image: ign0ramus/multi-docker-container-test-app_nginx:${VERSION:-latest}
+        image: ign0ramus/multi-docker-container-test-app_nginx:${VERSION_TAG:-latest}
         ports:
             - '3000:80'
         depends_on: 
@@ -25,7 +25,7 @@ services:
         build: 
             context: ./server
             dockerfile: Dockerfile
-        image: ign0ramus/multi-docker-container-test-app_api:${VERSION:-latest}
+        image: ign0ramus/multi-docker-container-test-app_api:${VERSION_TAG:-latest}
         volumes: 
             - /app/node_modules
             - ./server:/app
@@ -45,7 +45,7 @@ services:
         build:
             context: ./worker
             dockerfile: Dockerfile
-        image: ign0ramus/multi-docker-container-test-app_worker:${VERSION:-latest}
+        image: ign0ramus/multi-docker-container-test-app_worker:${VERSION_TAG:-latest}
         volumes:
             - /app/node_modules
             - ./worker:/app
@@ -60,7 +60,7 @@ services:
         build:
             context: ./frontend
             dockerfile: Dockerfile
-        image: ign0ramus/multi-docker-container-test-app_frontend:${VERSION:-latest}
+        image: ign0ramus/multi-docker-container-test-app_frontend:${VERSION_TAG:-latest}
         volumes:  
             - /app/node_modules
             - ./frontend:/app

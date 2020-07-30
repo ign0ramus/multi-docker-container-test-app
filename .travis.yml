@@ -11,13 +11,13 @@ jobs:
 
     - stage: build & commit images
       before_script:
-        - export VERSION=TRAVIS_BUILD_NUMBER
+        - export VERSION_TAG=TRAVIS_BUILD_NUMBER
       script:
         - docker-compose build
         - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
       after_success:
         - docker-compose push
-        - unset VERSION
+        - unset VERSION_TAG
         - docker-compose build
         - docker-compose push
 
