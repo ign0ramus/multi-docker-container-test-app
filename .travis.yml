@@ -1,0 +1,19 @@
+language: generic
+services:
+  - docker
+jobs:
+  include:
+    - stage: tests
+      before_script:
+        - docker build -t ign0ramus/multi-docker-container-test-app-frontend -f ./frontend/Dockerfile.dev .
+      script:
+        - docker -e CI=true ign0ramus/multi-docker-container-test-app-frontend npm run test
+
+    - stage: commit images
+      name: "Build images"
+    - script:
+        - docker-compose build
+      name: "Commit images"  
+    - script:
+        - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
+        - docker-compose push
