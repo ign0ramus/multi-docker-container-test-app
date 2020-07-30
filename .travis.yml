@@ -10,10 +10,15 @@ jobs:
         - docker run -e CI=true ign0ramus/multi-docker-container-test-app-frontend npm run test
 
     - stage: build & commit images
+      before_script:
+        - export VERSION=TRAVIS_BUILD_NUMBER
       script:
         - docker-compose build
-      after_success:
         - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
+      after_success:
+        - docker-compose push
+        - unset VERSION
+        - docker-compose build
         - docker-compose push
 
     - stage: deploy
@@ -25,7 +30,7 @@ jobs:
         env: 'MultiDockerContainerTestApp-env'
         bucket: 'elasticbeanstalk-us-east-2-737637823476'
         bucket_path: 'multi-docker-container-test-app'
-        access_key_id: $AWS_SECRET_KEY
-        secret_access_key: $AWS_ACCESS_KEY
+        access_key_id: $AWS_ACCESS_KEY
+        secret_access_key: $AWS_SECRET_KEY
         on:
           branch: master
