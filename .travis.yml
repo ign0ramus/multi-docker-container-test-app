@@ -7,13 +7,14 @@ jobs:
       before_script:
         - docker build -t ign0ramus/multi-docker-container-test-app-frontend -f ./frontend/Dockerfile.dev ./frontend
       script:
-        - docker -e CI=true ign0ramus/multi-docker-container-test-app-frontend npm run test
+        - docker run -e CI=true ign0ramus/multi-docker-container-test-app-frontend npm run test
 
     - stage: commit images
       name: 'Build images'
     - script:
         - docker-compose build
-      name: 'push images'
-    - script:
+      name: 'Push images'
+      before_script:
         - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
+      - script:
         - docker-compose push
