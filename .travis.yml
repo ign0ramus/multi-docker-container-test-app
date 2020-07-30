@@ -21,10 +21,10 @@ jobs:
       deploy:
         provider: elasticbeanstalk
         region: us-east-2
-        app: multi-docker-container-test-app
-        env: MultiDockerContainerTestApp-env
-        bucket: elasticbeanstalk-us-east-2-737637823476
-        bucket_path: docker-multi
+        app: 'multi-docker-container-test-app'
+        env: 'MultiDockerContainerTestApp-env'
+        bucket: 'elasticbeanstalk-us-east-2-737637823476'
+        bucket_path: 'multi-docker-container-test-app'
         access_key_id: $AWS_SECRET_KEY
         secret_access_key: $AWS_ACCESS_KEY
         on:
