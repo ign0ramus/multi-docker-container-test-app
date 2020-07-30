@@ -1,30 +1,30 @@
 {
 	"AWSEBDockerrunVersion": 2,
-	"containerDefenitions": [
+	"containerDefinitions": [
 		{
 			"name": "frontend",
-			"image": "ign0ramus/multi-docker-container-test-app_frontend",
+			"image": "ign0ramus/multi-docker-container-test-app_frontend:latest",
 			"hostname": "frontend",
 			"essential": false,
 			"memory": 128
 		},
 		{
 			"name": "api",
-			"image": "ign0ramus/multi-docker-container-test-app_api",
+			"image": "ign0ramus/multi-docker-container-test-app_api:latest",
 			"hostname": "api",
 			"essential": false,
 			"memory": 128
 		},
 		{
 			"name": "worker",
-			"image": "ign0ramus/multi-docker-container-test-app_worker",
+			"image": "ign0ramus/multi-docker-container-test-app_worker:latest",
 			"hostname": "worker",
 			"essential": false,
 			"memory": 128
 		},
 		{
 			"name": "nginx",
-			"image": "ign0ramus/multi-docker-container-test-app_nginx",
+			"image": "ign0ramus/multi-docker-container-test-app_nginx:latest",
 			"hostname": "nginx",
 			"essential": true,
 			"memory": 128,
