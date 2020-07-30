@@ -14,7 +14,7 @@ services:
         build:
             context: ./nginx
             dockerfile: Dockerfile.dev
-        image: multi-docker-container-test-app_nginx:"${TRAVIS_BUILD_NUMBER}"
+        image: ign0ramus/multi-docker-container-test-app_nginx:"${TRAVIS_BUILD_NUMBER}"
         ports:
             - '3000:80'
         depends_on: 
@@ -25,7 +25,7 @@ services:
         build: 
             context: ./server
             dockerfile: Dockerfile.dev
-        image: multi-docker-container-test-app_api:"${TRAVIS_BUILD_NUMBER}
+        image: ign0ramus/multi-docker-container-test-app_api:"${TRAVIS_BUILD_NUMBER}"
         volumes: 
             - /app/node_modules
             - ./server:/app
@@ -45,7 +45,7 @@ services:
         build:
             context: ./worker
             dockerfile: Dockerfile.dev
-        image: multi-docker-container-test-app_worker:"${TRAVIS_BUILD_NUMBER}
+        image: ign0ramus/multi-docker-container-test-app_worker:"${TRAVIS_BUILD_NUMBER}"
         volumes:
             - /app/node_modules
             - ./worker:/app
@@ -60,7 +60,7 @@ services:
         build:
             context: ./frontend
             dockerfile: Dockerfile.dev
-        image: multi-docker-container-test-app_frontend:"${TRAVIS_BUILD_NUMBER}
+        image: ign0ramus/multi-docker-container-test-app_frontend:"${TRAVIS_BUILD_NUMBER}"
         volumes:  
             - /app/node_modules
             - ./frontend:/app
