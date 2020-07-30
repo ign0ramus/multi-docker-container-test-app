@@ -4,7 +4,7 @@ services:
     postgres:
         image: 'postgres:latest'
         environment: 
-            POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     redis:
         image: 'redis:latest'
@@ -13,8 +13,8 @@ services:
         restart: always
         build:
             context: ./nginx
-            dockerfile: Dockerfile.dev
-        image: ign0ramus/multi-docker-container-test-app_nginx:"${TRAVIS_BUILD_NUMBER}"
+            dockerfile: Dockerfile
+        image: ign0ramus/multi-docker-container-test-app_nginx:${TRAVIS_BUILD_NUMBER}
         ports:
             - '3000:80'
         depends_on: 
@@ -24,8 +24,8 @@ services:
     api:
         build: 
             context: ./server
-            dockerfile: Dockerfile.dev
-        image: ign0ramus/multi-docker-container-test-app_api:"${TRAVIS_BUILD_NUMBER}"
+            dockerfile: Dockerfile
+        image: ign0ramus/multi-docker-container-test-app_api:${TRAVIS_BUILD_NUMBER}
         volumes: 
             - /app/node_modules
             - ./server:/app
@@ -35,17 +35,17 @@ services:
         environment: 
             - REDIS_HOST=redis
             - REDIS_PORT=6379
-            - PGUSER="${PGUSER}"
+            - PGUSER=${PGUSER}
             - PGHOST=postgres
-            - PGDATABASE="${PGDATABASE}"
-            - PGPASSWORD="${PGPASSWORD}"
+            - PGDATABASE=${PGDATABASE}
+            - PGPASSWORD=${PGPASSWORD}
             - PGPORT=5432
             
     worker:
         build:
             context: ./worker
-            dockerfile: Dockerfile.dev
-        image: ign0ramus/multi-docker-container-test-app_worker:"${TRAVIS_BUILD_NUMBER}"
+            dockerfile: Dockerfile
+        image: ign0ramus/multi-docker-container-test-app_worker:${TRAVIS_BUILD_NUMBER}
         volumes:
             - /app/node_modules
             - ./worker:/app
@@ -59,8 +59,8 @@ services:
         stdin_open: true
         build:
             context: ./frontend
-            dockerfile: Dockerfile.dev
-        image: ign0ramus/multi-docker-container-test-app_frontend:"${TRAVIS_BUILD_NUMBER}"
+            dockerfile: Dockerfile
+        image: ign0ramus/multi-docker-container-test-app_frontend:${TRAVIS_BUILD_NUMBER}
         volumes:  
             - /app/node_modules
             - ./frontend:/app
