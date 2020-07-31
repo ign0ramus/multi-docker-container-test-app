@@ -13,12 +13,12 @@ jobs:
       before_script:
         - export VERSION_TAG=$TRAVIS_BUILD_NUMBER
       script:
-        - docker-compose build
+        - docker-compose -f docker-compose.prod.yml build
         - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
       after_success:
         - docker-compose push
         - unset VERSION_TAG
-        - docker-compose build
+        - docker-compose -f docker-compose.prod.yml build
         - docker-compose push
 
     - stage: deploy
