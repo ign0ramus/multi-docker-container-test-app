@@ -9,18 +9,6 @@ services:
     redis:
         image: 'redis:latest'
 
-    nginx:
-        restart: always
-        build:
-            context: ./nginx
-            dockerfile: Dockerfile
-        image: ign0ramus/multi-docker-container-test-app_nginx:${VERSION_TAG:-latest}
-        ports:
-            - '3000:80'
-        depends_on: 
-            - frontend
-            - api
-
     api:
         build: 
             context: ./server
